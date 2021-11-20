@@ -31,6 +31,7 @@ const App = () => (
           🎉
         </span>
       </ExampleToast>
+      <Button onClick={()=> window.open('https://github.com/mricim/myChat','_blank')}>GitHub</Button>
     </Container>
 
     <Container className="p-5 mb-4 bg-light rounded-3">
