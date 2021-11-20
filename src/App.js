@@ -1,27 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+import Toast from "react-bootstrap/Toast";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
+import "./App.css";
+
+const ExampleToast = ({ children }) => {
+  const [show, toggleShow] = useState(true);
+
   return (
-    <div className="App">
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
-          <small id="emailHelp" class ="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1"></input>
-          <label class ="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+    <Toast show={show} onClose={() => toggleShow(!show)}>
+      <Toast.Header>
+        <strong className="mr-auto">React-Bootstrap</strong>
+      </Toast.Header>
+      <Toast.Body>{children}</Toast.Body>
+    </Toast>
   );
-}
+};
+
+const App = () => (
+  <Container className="p-3">
+
+    <Container className="p-5 mb-4 bg-light rounded-3">
+      <h1 className="header">Welcome To React-Bootstrap</h1>
+      <ExampleToast>
+        We now have Toasts
+        <span role="img" aria-label="tada">
+          🎉
+        </span>
+      </ExampleToast>
+    </Container>
+
+    <Container className="p-5 mb-4 bg-light rounded-3">
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicId">
+          <Form.Label>Id</Form.Label>
+          <Form.Control type="number" placeholder="Enter id" />
+          <Form.Text className="text-muted">
+            We'll never share your id with anyone else.
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="string" placeholder="Enter name" />
+          <Form.Text className="text-muted">
+            We'll never share your name with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </Container>
+
+  </Container>
+);
 
 export default App;
